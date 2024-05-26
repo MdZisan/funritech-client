@@ -1,8 +1,31 @@
 import { useState } from "react";
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { RiArmchairFill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
+import Auth from "../../firebase/firebase.config";
 
 const Navbar = () => {
+ const [user,loading,error]=  useAuthState(Auth);
+//  console.log(user,loading )
+const [signOut, signoutLoading, signoutError] = useSignOut(Auth);
+if (signoutError) {
+  return (
+    <div>
+      <p>Error: {error.message}</p>
+    </div>
+  );
+}
+if (signoutLoading) {
+  return <p>Loading...</p>;
+}
+const handleSignOut = async() => {
+const success = await signOut();
+          if (success) {
+            alert('You are sign out');
+          }
+        
+
+}
   const navItems = [
     {
       title: "Home",
@@ -21,11 +44,14 @@ const Navbar = () => {
       title: "Contact",
       path: "/contact",
     },
+   
   ];
+  if (user) {
+    navItems.push({ title: "Dashboard", path: "/dashboard" });
+  }
 
-  const [active, setActive] = useState(false);
  const {pathname} = useLocation();
-console.log(pathname)
+// console.log(pathname)
   return (
     <>
       <div className="navbar bg-base-100">
@@ -74,13 +100,23 @@ console.log(pathname)
           </ul>
         </div>
         <div className="navbar-end">
+          { loading ?<div>
+            <span className="loading loading-spinner loading-md"></span>
+
+          </div>
+          :
+      <div className="flex items-center">
+      <h1 className="mr-2 font-semibold text-lg">{user?.email}</h1>
         <p href="#_" className="px-5 py-2.5 relative rounded group  text-white font-medium inline-block">
 <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
 <span className="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
 <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
 <span className="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-purple-600 from-blue-500"></span>
-<span className="relative"><Link to={'/'}>Login</Link></span>
+<span className="relative">
+  {user?.email ? <button onClick={handleSignOut}> LogOut</button> :<Link to={'/login'}>Login</Link> }
+  </span>
 </p>
+      </div>}
         </div>
       </div>
     </>

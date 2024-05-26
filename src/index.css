@@ -2,3 +2,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input-bordered:focus-within{
+
+    outline-color:#4f46e5;
+}
