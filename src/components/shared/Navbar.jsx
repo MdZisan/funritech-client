@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { RiArmchairFill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -57,23 +58,23 @@ console.log(pathname)
               ))}
             </ul>
           </div>
-          <Link to={'/'} className="btn text-indigo-600 font-bold btn-ghost text-2xl">FurniTech</Link>
+          <Link to={'/'} className="btn text-indigo-600 font-bold btn-ghost text-2xl"> <RiArmchairFill /> FurniTech</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
           {navItems.map((item, index) => (
                 <li key={index}>
-                
-                  <p href="#_" className={`rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600   ${pathname===item.path ? 'bg-indigo-600 text-white':'text-indigo-600'} `}>
+               
+                  <Link to={item.path}  className={`rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600   ${pathname===item.path ? 'bg-indigo-600 text-white':'text-indigo-600'} `}>
 <span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
-<span className="relative transition duration-300 group-hover:text-white ease ">  <Link to={item.path}>{item.title}</Link></span>
-</p>
+<span className="relative transition duration-300 group-hover:text-white ease ">  {item.title}</span>
+</Link>
                 </li>
               ))}
           </ul>
         </div>
         <div className="navbar-end">
-        <p href="#_" className="px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block">
+        <p href="#_" className="px-5 py-2.5 relative rounded group  text-white font-medium inline-block">
 <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
 <span className="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
 <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
