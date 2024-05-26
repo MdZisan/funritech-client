@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const navItems = [
@@ -6,20 +7,24 @@ const Navbar = () => {
       title: "Home",
       path: "/",
     },
-    {
-      title: "About",
-      path: "/about",
-    },
+   
     {
       title: "Product",
       path: "/product",
     },
+    {
+        title: "About",
+        path: "/about",
+      },
     {
       title: "Contact",
       path: "/contact",
     },
   ];
 
+  const [active, setActive] = useState(false);
+ const {pathname} = useLocation();
+console.log(pathname)
   return (
     <>
       <div className="navbar bg-base-100">
@@ -52,25 +57,29 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-          <Link to={'/'} className="btn btn-ghost text-xl">FurniTech</Link>
+          <Link to={'/'} className="btn text-indigo-600 font-bold btn-ghost text-2xl">FurniTech</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
           {navItems.map((item, index) => (
                 <li key={index}>
-                  <Link to={item.path}>{item.title}</Link>
+                
+                  <p href="#_" className={`rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600   ${pathname===item.path ? 'bg-indigo-600 text-white':'text-indigo-600'} `}>
+<span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+<span className="relative transition duration-300 group-hover:text-white ease ">  <Link to={item.path}>{item.title}</Link></span>
+</p>
                 </li>
               ))}
           </ul>
         </div>
         <div className="navbar-end">
-        <a href="#_" class="px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block">
-<span class="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
-<span class="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
-<span class="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
-<span class="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-purple-600 from-blue-500"></span>
-<span class="relative"><Link to={'/'}>Login</Link></span>
-</a>
+        <p href="#_" className="px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block">
+<span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
+<span className="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
+<span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
+<span className="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-purple-600 from-blue-500"></span>
+<span className="relative"><Link to={'/'}>Login</Link></span>
+</p>
         </div>
       </div>
     </>
