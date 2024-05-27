@@ -7,6 +7,7 @@ import Product from "../page/product/Product";
 import Login from "../page/AuthPage/login/Login";
 import Register from "../page/AuthPage/register/register";
 import DashBoradLayout from "../layout/DashBoradLayout";
+import DashboardHome from "../page/Dashboard/dashboardHomePage/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/dashboard',
-      element:<h1>Dashboard</h1>
+      element:<DashboardHome/>
       }
     ]
   }
