@@ -8,6 +8,8 @@ import Login from "../page/AuthPage/login/Login";
 import Register from "../page/AuthPage/register/register";
 import DashBoradLayout from "../layout/DashBoradLayout";
 import DashboardHome from "../page/Dashboard/dashboardHomePage/DashboardHome";
+import AddProduct from "../components/dashboard/AddProduct";
+import MyProduct from "../components/dashboard/MyProduct";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +34,15 @@ const router = createBrowserRouter([
       {
         path:'/dashboard',
       element:<DashboardHome/>
-      }
+      },
+      {
+        path:'/dashboard/add-product',
+      element:<AddProduct/>
+      },
+      {
+        path:'/dashboard/my-product',
+      element:<MyProduct/>
+      },
     ]
   }
 ]);

@@ -49,7 +49,7 @@ const success = await signOut();
   ];
   if (user) {
     navItems.push({ title: "Dashboard", path: "/dashboard" });
-    toast.success('You are sign in')
+    // toast.success('You are sign in')
   }
 
  const {pathname} = useLocation();

@@ -40,7 +40,7 @@ const Sidebar = () => {
     <ul className="menu p-4 w-72 min-h-full bg-[#b6b7f17c] text-base-content">
       {/* Sidebar content here */}
       
-        {navItems.map((item, index) => (
+        {navItems.reverse().map((item, index) => (
                     <Link to={item.path} key={index} className="flex flex-row items-center justify-start text-xl text-white bg-indigo-400 hover:bg-indigo-500 rounded-xl my-2 p-2 w-[70%] hover:w-[75%] transition-all mx-auto gap-x-2">
                    <h1 className="">{item.icon}</h1> <li className="">{item.title}</li>
                     </Link>
