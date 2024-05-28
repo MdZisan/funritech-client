@@ -2,6 +2,7 @@ import React from 'react';
 import { MdOutlineDriveFileRenameOutline } from 'react-icons/md';
 
 const Contact = () => {
+  
     return (
         <div className='w-1/4 mx-auto space-y-5'>
             <label className="input input-bordered flex items-center gap-2">

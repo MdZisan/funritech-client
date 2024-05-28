@@ -3,6 +3,7 @@ import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { RiArmchairFill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 import Auth from "../../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
  const [user,loading,error]=  useAuthState(Auth);
@@ -21,7 +22,7 @@ if (signoutLoading) {
 const handleSignOut = async() => {
 const success = await signOut();
           if (success) {
-            alert('You are sign out');
+            toast.success('You are sign out');
           }
         
 
@@ -48,6 +49,7 @@ const success = await signOut();
   ];
   if (user) {
     navItems.push({ title: "Dashboard", path: "/dashboard" });
+    toast.success('You are sign in')
   }
 
  const {pathname} = useLocation();
